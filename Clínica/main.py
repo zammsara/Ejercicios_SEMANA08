@@ -5,7 +5,7 @@
 import Modulo
 import os
 
-cola = Modulo.Cola()
+cola = Modulo.Cola() # Crear una instancia de la cola
 
 while True: 
     print("-" * 30)

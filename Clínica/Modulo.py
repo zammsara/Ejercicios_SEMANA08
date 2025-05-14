@@ -1,32 +1,33 @@
 class Nodo:
     def __init__(self, paciente):
-        self.paciente = paciente
-        self.siguiente = None
+        self.paciente = paciente  # Guarda el nombre del paciente
+        self.siguiente = None     # Apunta al siguiente nodo (paciente)
+   
 
 class Cola: 
     def __init__(self):
-        self.frente = None
-        self.final = None
+        self.frente = None  # Primer paciente en la cola
+        self.final = None   # Último paciente en la cola
 
     def Agregar(self, paciente):
-        nuevo = Nodo(paciente)
-        if self.final is None:
+        nuevo = Nodo(paciente)            # Crear nodo con el paciente
+        if self.final is None:            # Si la cola está vacía
             self.frente = self.final = nuevo
         else:
-            self.final.siguiente = nuevo 
-            self.final = nuevo
+            self.final.siguiente = nuevo  # Enlazar al final actual
+            self.final = nuevo            # Actualizar puntero final
         print(f"Paciente '{paciente}' agregado.")
 
     def Eliminar(self):
-        if self.frente is None: 
-            print("No hay pacientes.")
+        if self.frente is None:
+            print("No hay pacientes.")    # Cola vacía
             return None
-        
-        eliminado = self.frente.paciente
-        self.frente = self.frente.siguiente
+
+        eliminado = self.frente.paciente  # Guardar paciente para mostrar
+        self.frente = self.frente.siguiente  # Mover al siguiente
 
         if self.frente is None:
-            self.final = None
+            self.final = None             # Si la cola queda vacía
         print(f"Paciente '{eliminado}' atendido.")
         return eliminado
 
