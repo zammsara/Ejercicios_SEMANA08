@@ -1,5 +1,5 @@
 # Desarrollado por: Aguilera Franco, Estrada Alicia, Duarte Andrea, Sanchez David, Zambrana Sara
-# EDITOR DE TEXTO || Versión 1.0
+# Clinica || Versión 1.0
 # 13.mayo.2025
 
 #Descripción del programa: 
