@@ -4,9 +4,21 @@
 #que los agentes estén disponibles, se debe atender al siguiente cliente en orden de llegada
 
 import modulos
+import os
 
-cola = modulos.ColaLlamadas()
+cola = modulos.ColaLlamadas() # Inicializa la cola de llamadas
 
+def limpiar_pantalla():
+    """Limpia la pantalla de la terminal."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+    #pausa
+    
+
+limpiar_pantalla()
+
+
+
+# Menú y gestionar las opciones
 while True:
     print("=" * 30)
     print("=== MENÚ - Centro de Atención al Cliente ===")
@@ -16,23 +28,33 @@ while True:
     print("4. Salir")
     print("=" * 30)
 
-    opcion = input("Seleccione una opción: ")
+    opcion = int(input("Seleccione una opción: "))
+    
+    match opcion: 
+        case 1: 
+            nombre = input("Nombre del cliente: ")
+            motivo = input("Motivo de la llamada: ")
+            llamada = modulos.LlamadaCliente(nombre, motivo)
+            cola.insertar(llamada)
+            input("Llamada registrada. Presione Enter para continuar...")
+            limpiar_pantalla()
+            
+        case 2:
+            cola.eliminar()
+            input("Presione Enter para continuar...")
+            limpiar_pantalla()
+        case 3:
+            cola.imprimir()
+            input("Presione Enter para continuar...")
+            limpiar_pantalla()
+        case 4:
+            print("Saliendo del sistema...")
+            limpiar_pantalla()
+            break
+        case _:
+            print("Opción inválida. Intente nuevamente.\n")
+            input("Presione Enter para continuar...")
+            limpiar_pantalla()
+            
 
-    if opcion == "1":
-        nombre = input("Nombre del cliente: ")
-        motivo = input("Motivo de la llamada: ")
-        llamada = modulos.LlamadaCliente(nombre, motivo)
-        cola.insertar(llamada)
-
-    elif opcion == "2":
-        cola.eliminar()
-
-    elif opcion == "3":
-        cola.imprimir()
-
-    elif opcion == "4":
-        print("Saliendo del sistema...")
-        break
-
-    else:
-        print("Opción inválida. Intente nuevamente.\n")
+    
