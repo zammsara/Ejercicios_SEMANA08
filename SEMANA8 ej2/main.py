@@ -21,14 +21,19 @@ limpiar_pantalla()
 # Menú y gestionar las opciones
 while True:
     print("=" * 30)
-    print("=== MENÚ - Centro de Atención al Cliente ===")
+    print("=== Centro de Atención al Cliente ===")
     print("1. Registrar nueva llamada")
     print("2. Atender siguiente llamada")
     print("3. Ver cola de llamadas")
     print("4. Salir")
     print("=" * 30)
 
-    opcion = int(input("Seleccione una opción: "))
+    try:
+        opcion = int(input("Seleccione una opción: "))
+    except ValueError:
+        print("Opción no válida. Intenta de nuevo.")
+        input("Presione Enter para continuar...")
+        continue
     
     match opcion: 
         case 1: 
