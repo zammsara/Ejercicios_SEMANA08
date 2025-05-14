@@ -1,3 +1,11 @@
+# Desarrollado por: Aguilera Franco, Estrada Alicia, Duarte Andrea, Sanchez David, Zambrana Sara
+# EDITOR DE TEXTO || Versión 1.0
+# 13.mayo.2025
+
+#Descripción del programa: 
+# Este programa simula una clínica donde se pueden agregar pacientes a una cola de espera, 
+# buscar pacientes por nombre, eliminar pacientes de la cola y mostrar la lista de pacientes en espera.
+
 from mod_cola import Cola
 from mod_cola import Paciente
 import mod_menu as menu
@@ -12,6 +20,7 @@ while respuesta != 5:
     match respuesta:
         case 1:
             nombre = input("\nIngrese el nombre del paciente: ").upper()
+            #Verificamos que ingresen una edad valida
             try:
                 edad = int(input("Ingrese la edad del paciente: "))
                 if edad < 0 or edad > 120:
@@ -22,7 +31,8 @@ while respuesta != 5:
                 print(Fore.LIGHTRED_EX + Style.BRIGHT + "Error: La edad debe ser un número entero."+ Style.RESET_ALL)
                 menu.pausa()
                 continue
-           
+            
+            #pedimos los datos del paciente y lo insertamos en la cola
             enfermedad = input("Ingrese la enfermedad del paciente: ")
             paciente = Paciente(nombre, edad, enfermedad)
             cola.Insertar(paciente)
@@ -30,12 +40,14 @@ while respuesta != 5:
             menu.pausa()
             
         case 2:
+            #Imprimimos la lista de pacientes
             cola.Imprimir()
             menu.pausa()
         case 3:
+            #Buscamos un paciente por nombre
             nombre_buscar = input("\nIngrese el nombre del paciente a buscar: ")
-            encontrado = cola.Buscar(nombre_buscar.upper())
-            if encontrado is not None:
+            encontrado = cola.Buscar(nombre_buscar.upper())#lo pasamos a mayusculas para que no haya problemas con la busqueda
+            if encontrado is not None:#si devolvio algo, significa que lo encontro
                 print(Fore.LIGHTGREEN_EX + Style.BRIGHT + f"Paciente encontrado: \n{encontrado}"+ Style.RESET_ALL)
                 menu.pausa()
             else:
@@ -43,6 +55,7 @@ while respuesta != 5:
                 menu.pausa()
 
         case 4:
+            #Eliminamos al primer paciente que habiamos ingresado *(FIFO)*
             eliminado = cola.Eliminar()
             if eliminado is not None:
                 print(Fore.LIGHTRED_EX + Style.BRIGHT + f"Paciente que paso a consulta: {eliminado}"+ Style.RESET_ALL)

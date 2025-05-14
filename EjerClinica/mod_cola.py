@@ -20,7 +20,7 @@ class Cola:
         self.primero = None
         self.ultimo = None
         
-
+#Insertar un paciente en la cola
     def Insertar(self, dato):
         nuevo = Nodo(dato)
         if self.primero is None:
@@ -29,6 +29,7 @@ class Cola:
             self.ultimo.siguiente = nuevo
             self.ultimo = nuevo
     
+#Eliminar un paciente de la cola
     def Eliminar(self):
         if self.primero is None:
             return None
@@ -38,7 +39,8 @@ class Cola:
             if self.primero is None:
                 self.ultimo = None
             return dato
-            
+
+#Imprimir la lista de pacientes        
     def Imprimir(self):
         actual = self.primero
         if actual is None:
@@ -48,8 +50,10 @@ class Cola:
             print(actual.paciente, end="\n")
             actual = actual.siguiente
             
+#Buscar un paciente por nombre 
     def Buscar(self, nombre):
         actual = self.primero
+        #Si devolvemos None, significa que no hay pacientes en la cola, sino se devuelve el paciente
         while actual is not None:
             if actual.paciente.nombre == nombre:
                 return actual.paciente
